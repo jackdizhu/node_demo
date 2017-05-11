@@ -1,7 +1,7 @@
 var
 http = require('http'),
 url = require('url'),
-_mysql = require('./mysqlModule.js'),
+_mysql = require('./mysqlModulePool.js'),
 log = require('./logger.js');
 
 var config = {
