@@ -129,7 +129,7 @@ var selectTablesTable = function (pool,res,table,page) {
         jstring = jstring.replace(/\"/g,'');
         // var key = r.exec(jstring);
         var key = jstring.match(r);
-        log.error(jstring);
+        // log.error(jstring);
         for (var i = 0;i < key.length; i++) {
           s += '<td width="100px;" style="padding:10px;border: 1px solid #eee;word-break:normal;">'+key[i]+'</td>';
         }
@@ -158,6 +158,7 @@ var selectTablesTable = function (pool,res,table,page) {
 
 // 创建服务器 查询  t = 数据表
 http.createServer(function (req,res) {
+  // log.error(pool);
   var U = url.parse(req.url, true);
   var _pathname = U.pathname;
   var query = U.query;
