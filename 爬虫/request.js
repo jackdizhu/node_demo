@@ -3,7 +3,7 @@
     const http = require('http'),
           fs = require('fs'),
           cheerio = require('cheerio'),
-          request = require('request'),
+          getSrc = require('request'),
           log = require('./logger.js');
     var U = 'http://www.th7.cn/d/file/p/2016/10/15/e5ade4d729e5005b18862b8b609c5fbe.jpg';
     http.get(U, function (res) {
@@ -25,7 +25,7 @@
             var r = /([^/]+.[a-z]+)$/g;
             var name = imgSrc.match(r);
             if(imgSrc){
-              request(imgSrc).pipe(fs.createWriteStream('./'+ name[0]));
+              getSrc(imgSrc).pipe(fs.createWriteStream('./'+ name[0]));
             }
         })
         .on('error', function (err) {
