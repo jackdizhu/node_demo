@@ -5,7 +5,7 @@
           cheerio = require('cheerio'),
           request = require('request'),
           log = require('./logger.js');
-    var U = 'http://www.gooofashion.com/index.php?app=goods_list&type=new&list1=1';
+    var U = 'http://www.th7.cn/d/file/p/2016/10/15/e5ade4d729e5005b18862b8b609c5fbe.jpg';
     http.get(U, function (res) {
         // 页面数据
         var html = '';
@@ -22,8 +22,10 @@
             var imgSrc = $('img')[0].attribs.src;
             // 保存图片资源
             log.debug(imgSrc);
+            var r = /([^/]+.[a-z]+)$/g;
+            var name = imgSrc.match(r);
             if(imgSrc){
-              request(imgSrc).pipe(fs.createWriteStream('./'+ 'test.png'));
+              request(imgSrc).pipe(fs.createWriteStream('./'+ name[0]));
             }
         })
         .on('error', function (err) {
