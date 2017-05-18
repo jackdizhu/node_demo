@@ -64,8 +64,8 @@
     }
     getAgent().then(function (data) {
       data.forEach(function (li) {
-        // _getSrc(li,opt);
-        _getSrc2(li,opt2);
+        _getSrc(li,opt);
+        // _getSrc2(li,opt2);
       });
     });
 
