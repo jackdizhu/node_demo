@@ -88,11 +88,13 @@
       });
     }
     getAgent().then(function (data) {
-      for (var i = 0; i < data.length; i++) {
-        proxyList.push('http://'+data[i].ip+':'+data[i].ipport);
-      }
-      proxyList.forEach(function (li) {
-        opt.proxy = li;
+      // for (var i = 0; i < data.length; i++) {
+      //   proxyList.push('http://'+data[i].ip+':'+data[i].ipport);
+      // }
+      // log.debug(data);
+      data.forEach(function (li) {
+        opt.proxy = 'http://'+li.ip+':'+li.ipport;
+        opt.port = li.ipport;
         _getSrc();
       });
     });
