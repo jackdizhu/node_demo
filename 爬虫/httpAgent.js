@@ -1,9 +1,8 @@
 var
 http = require('http'),
 url = require('url'),
-_mysql = require('./mysqlModule.js'),
 log = require('./logger.js'),
-Q = require('./q');
+Q = require('q');
 
 var request = require("request");
 var iconv = require('iconv-lite');
@@ -24,7 +23,6 @@ function getProxyList() {
                 'User-Agent': 'Mozilla/8.0 (Windows NT 6.1; WOW64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/45.0.2454.101 Safari/537.36',
                 'referer': 'http://www.66ip.cn/'
             },
-
         };
         request(options, function (error, response, body) {
             try {
@@ -52,16 +50,16 @@ getProxyList().then(function (proxyList) {
 
     //这里修改一下，变成你要访问的目标网站
     proxyList.forEach(function (proxyurl) {
-        console.log(`testing ${proxyurl}`);
+        // console.log(`testing ${proxyurl}`);
         targetOptions.proxy = 'http://' + proxyurl;
         request(targetOptions, function (error, response, body) {
             try {
                 if (error) throw error;
                 body = body.toString();
-                console.log(body);
+                // log.debug(response.request.proxy.host);
                 eval(`var ret = ${body}`);
                 if (ret) {
-                    console.log(`验证成功==>> ${ret.address}`);
+                    log.debug(`验证成功: ${response.request.proxy.host} ==>> ${ret.address}`);
                 }
             } catch (e) {
                 // console.error(e);
@@ -70,7 +68,7 @@ getProxyList().then(function (proxyList) {
 
     });
 }).catch(e => {
-    console.log(e);
+    // console.log(e);
 })
 
 
