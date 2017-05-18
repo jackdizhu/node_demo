@@ -52,6 +52,7 @@ getProxyList().then(function (proxyList) {
     proxyList.forEach(function (proxyurl) {
         // console.log(`testing ${proxyurl}`);
         targetOptions.proxy = 'http://' + proxyurl;
+        console.log(targetOptions.proxy);
         request(targetOptions, function (error, response, body) {
             try {
                 if (error) throw error;
