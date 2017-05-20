@@ -27,7 +27,7 @@
             hostname: 'www.jd.com',  
             // 443 https端口 80 http端口
             port: 443,  
-            path: '/v2transapi',  
+            path: '/',  
             method: 'POST',  
             headers: {  
                 'content-length': '21',
@@ -130,7 +130,7 @@
                 var _opt = options.opt;
                 var content = qs.stringify(_postData);  
 
-                var req = https.request(_opt, function(res){
+                var req = https.request(_opt, (res) => {
                     // 页面数据
                     var html = '';
                     res.setEncoding('utf8');  
