@@ -1,6 +1,6 @@
 (function () {
 
-    const http2 = require('./lib/http2_get.js'),
+    const http2 = require('http2_req'),
           fs = require('fs'),
           cheerio = require('cheerio'),
           getSrc = require('request'),
@@ -22,7 +22,7 @@
     var aU = [];
     var get = function () {
         if(!isLoading){return;}
-        http2(httpsO).then(function (data) {
+        http2.get(httpsO).then(function (data) {
             log({
                 err: data
             });

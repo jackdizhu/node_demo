@@ -1,0 +1,7 @@
+{
+  "name": "app",
+  "version": "0.0.0",
+  "dependencies": {
+    "http2_req": "^1.0.0"
+  }
+}

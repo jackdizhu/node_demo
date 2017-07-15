@@ -1,6 +1,6 @@
 (function () {
 
-    const http2 = require('./lib/http2.js'),
+    const http2 = require('http2_req'),
           fs = require('fs'),
           cheerio = require('cheerio'),
           getSrc = require('request'),
@@ -47,7 +47,7 @@ var httpsO = {
     postData: postData
 };
 
-http2(httpsO).then(function (data) {
+http2.req(httpsO).then(function (data) {
     // var $ = cheerio.load(data);
     // var li = $('#topic_list').find('.cell');
     // var lis = [];
