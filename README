@@ -9,4 +9,10 @@ node mysql 使用连接池 链接mysql
 
 https://github.com/jackdizhu/node
 
-.. 20170522
+爬虫 请求模块 http2_req
+
+    模块 http2_req.req
+    http / https (GET / POST)
+
+    模块 http2_req.get
+    http / https (GET)
