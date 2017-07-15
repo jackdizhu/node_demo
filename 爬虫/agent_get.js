@@ -1,7 +1,7 @@
 var
 http = require('http'),
 url = require('url'),
-log = require('./logger.js'),
+log = require('./lib/log.js'),
 Q = require('q');
 
 var request = require("request");
@@ -50,17 +50,16 @@ getProxyList().then(function (proxyList) {
 
     //这里修改一下，变成你要访问的目标网站
     proxyList.forEach(function (proxyurl) {
-        // console.log(`testing ${proxyurl}`);
         targetOptions.proxy = 'http://' + proxyurl;
-        console.log(targetOptions.proxy);
         request(targetOptions, function (error, response, body) {
             try {
                 if (error) throw error;
                 body = body.toString();
-                // log.debug(response.request.proxy.host);
                 eval(`var ret = ${body}`);
                 if (ret) {
-                    log.debug(`验证成功: ${response.request.proxy.host} ==>> ${ret.address}`);
+                    log({
+                        err: `验证成功: ${response.request.proxy.host} ==>> ${ret.address}`
+                    });
                 }
             } catch (e) {
                 // console.error(e);

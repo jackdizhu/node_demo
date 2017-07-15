@@ -1,11 +1,10 @@
 (function () {
 
-    const http2 = require('./http2.js'),
+    const http2 = require('./lib/http2.js'),
           fs = require('fs'),
           cheerio = require('cheerio'),
           getSrc = require('request'),
-          saveJson = require('./saveJson.js'),
-          log = require('./logger.js');
+          log = require('./lib/log.js');
 
     var searchT = encodeURI('爬虫');
 
@@ -22,9 +21,12 @@ var options = {
     path:'/course/docomment',
     method:'POST',
     headers:{
-        'Accept':'application/json, text/javascript, */*; q=0.01',
-        'Accept-Encoding':'gzip, deflate',
+        'Accept' :'text/html,application/xhtml+xml,application/xml;q=0.9,image/webp,*/*;q=0.8',
+        // 不能开启 gzip
+        // 'Accept-Encoding' :'gzip, deflate, sdch',
         'Accept-Language':'zh-CN,zh;q=0.8',
+        'Cache-Control' :'no-cache',
+        'Pragma' :'no-cache',
         'Connection':'keep-alive',
         'Content-Length':postData.length,
         'Content-Type':'application/x-www-form-urlencoded; charset=UTF-8',
@@ -36,7 +38,6 @@ var options = {
         'X-Requested-With':'XMLHttpRequest'
     }
 }
-
 var httpsO = {
     _http2: 'http',
     opt: options,
@@ -44,7 +45,9 @@ var httpsO = {
 };
 
 http2(httpsO).then(function (data) {
-  console.log(data);
+  log({
+    err: data
+  });
 });
 
 
