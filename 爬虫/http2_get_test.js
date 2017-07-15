@@ -24,33 +24,10 @@
     var get = function () {
         if(!isLoading){return;}
         http2(httpsO).then(function (data) {
-
-          isLoading = false;
-
-          var $ = cheerio.load(data);
-          var a = $('.v-align-middle');
-          for (var i = 0; i < a.length; i++) {
-            aU.push(host+a[i].attribs.href)
-          }
-
-          var paging = $('.pagination').find('a');
-          for (var j = 0; j < paging.length; j++) {
-            if(paging[j].attribs.rel == 'next'){
-              httpsO.U = host + paging[j].attribs.href;
-              isLoading = true;
-              break;
-            }
-          }
-          if(isLoading == false){
-            // 保存 json 数据
-            saveJson(aU);
-            // log.debug(aU);
-          }else{
-            get();
-          }
+            console.log(data);
         });
     }
-    
+
     get()
 
     // getSrc(imgSrc).pipe(fs.createWriteStream('./'+ name[0]));  保存图片代码
