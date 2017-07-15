@@ -1,11 +1,10 @@
 (function () {
 
-    const http2 = require('./http2.js'),
+    const http2 = require('./lib/http2_get.js'),
           fs = require('fs'),
           cheerio = require('cheerio'),
           getSrc = require('request'),
-          saveJson = require('./saveJson.js'),
-          log = require('./logger.js');
+          log = require('./lib/log.js');
 
     var searchT = encodeURI('爬虫');
 
@@ -24,7 +23,9 @@
     var get = function () {
         if(!isLoading){return;}
         http2(httpsO).then(function (data) {
-            console.log(data);
+            log({
+                err: data
+            });
         });
     }
 
