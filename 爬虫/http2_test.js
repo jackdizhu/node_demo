@@ -17,6 +17,7 @@ var postData = querystring.stringify({
 });
 var options = {
     hostname:'cnodejs.org',
+    // https 必须 443 端口 http 80 端口
     port:'443',
     path:'/topic/582d9e99892500ee7867c00d',
     method:'GET',
@@ -28,7 +29,8 @@ var options = {
         'Cache-Control':'no-cache',
         'Pragma':'no-cache',
         'Connection':'keep-alive',
-        'Content-Length':postData.length,
+        // GET 请求 不能设置
+        // 'Content-Length':postData.length,
         'Content-Type':'application/x-www-form-urlencoded; charset=UTF-8',
         'Cookie':'UM_distinctid=15d34963057ce-000c2e31081cd8-414a0229-1fa400-15d349630585ac; connect.sid=s%3APMJdQvoHwfI0WvYGOEEAXQGgKKK26Hi-.s3VsM4x3bdHl5SxGG8bNAC9U3ybi90PzG5F3u2m0PW4; CNZZDATA1254020586=482105769-1499822803-null%7C1500101463; _ga=GA1.2.1937253406.1499825846; _gid=GA1.2.1227576603.1499825846',
         'Host':'cnodejs.org',
@@ -39,6 +41,7 @@ var options = {
     }
 }
 var httpsO = {
+    // 设置 请求 https / http
     _http2: 'https',
     opt: options,
     postData: postData
